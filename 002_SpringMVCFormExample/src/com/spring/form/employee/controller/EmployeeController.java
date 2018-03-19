@@ -34,7 +34,7 @@ public class EmployeeController {
         list.add(new EmployeeBean(3,"sachin",55000f,"Care Taker"));  
 		list.add(employeeBean);
 		// return new ModelAndView("empform","command",emp);//will display object data
-		return new ModelAndView("redirect:/viewEmployee.html");// will redirect to viewemp request mapping
+		return new ModelAndView("redirect:/viewEmployee.spring");// will redirect to viewemp request mapping
 	}
 	
 	

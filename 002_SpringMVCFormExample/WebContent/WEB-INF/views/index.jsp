@@ -7,8 +7,8 @@
 <title>Employee Manager</title>
 </head>
 <body>
-	<a href="employeeForm.html">Add Employee</a>
-	<a href="viewEmployee.html">View Employees</a>
+	<a href="employeeForm.spring">Add Employee</a>
+	<a href="viewEmployee.spring">View Employees</a>
 
 </body>
 </html>

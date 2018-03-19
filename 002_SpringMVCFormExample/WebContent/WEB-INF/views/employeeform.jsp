@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<form:form method="post" action="saveEmployee.html">
+	<form:form method="post" action="saveEmployee.spring">
 		<table>
 			<tr>
 				<td>Name :</td>
