@@ -13,6 +13,9 @@ import com.spring.form.employee.bean.EmployeeBean;
 
 @Controller
 public class EmployeeController {
+	
+	
+	 List<EmployeeBean> list= new ArrayList<EmployeeBean>();  
 
 	@RequestMapping("/employeeForm")
 	public ModelAndView showform() {
@@ -26,7 +29,10 @@ public class EmployeeController {
 		// write code to save emp object
 		// here, we are displaying emp object to prove emp has data
 		System.out.println(employeeBean.getEmployeeName() + " " + employeeBean.getEmployeeSalary() + " " + employeeBean.getEmployeeDesignation());
-
+		list.add(new EmployeeBean(1,"rahul",35000f,"S.Engineer"));  
+        list.add(new EmployeeBean(2,"aditya",25000f,"IT Manager"));  
+        list.add(new EmployeeBean(3,"sachin",55000f,"Care Taker"));  
+		list.add(employeeBean);
 		// return new ModelAndView("empform","command",emp);//will display object data
 		return new ModelAndView("redirect:/viewEmployee.html");// will redirect to viewemp request mapping
 	}
@@ -36,12 +42,11 @@ public class EmployeeController {
     public ModelAndView viewemp(){  
         //write the code to get all employees from DAO  
         //here, we are writing manual code of list for easy understanding  
-        List<EmployeeBean> list= new ArrayList<EmployeeBean>();  
-        list.add(new EmployeeBean(1,"rahul",35000f,"S.Engineer"));  
-        list.add(new EmployeeBean(2,"aditya",25000f,"IT Manager"));  
-        list.add(new EmployeeBean(3,"sachin",55000f,"Care Taker"));  
-          
-        return new ModelAndView("viewemployee","list",list);  
+       
+        
+        System.out.println(list.size()); 
+        list.add(new EmployeeBean());
+        return new ModelAndView("viewemployee","employeeList",list);  
     }  
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
