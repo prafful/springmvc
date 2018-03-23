@@ -21,10 +21,24 @@ public class EmployeeDAO {
 	
 	public void saveEmployee(EmployeeEntity employeeEntity) {
 		// TODO Auto-generated method stub
-		
-			sessionFactory.openSession().saveOrUpdate(employeeEntity);	
+			System.out.println("ID received " + employeeEntity.getId());
+			Session session = null;
+			try {
+			    session = sessionFactory.getCurrentSession();
+			} catch (HibernateException e) {
+			    session = sessionFactory.openSession();
+			}	
 		
 			
+			if(employeeEntity.getId() != 0) {
+				session.update(employeeEntity);
+			}else {
+				session.save(employeeEntity);
+			}
+			
+			session.flush();
+			        
+			    
 		
 	}
 

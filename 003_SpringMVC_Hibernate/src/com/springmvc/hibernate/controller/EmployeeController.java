@@ -50,14 +50,14 @@ public class EmployeeController {
 		EmployeeEntity employeeEntity = new EmployeeEntity();
 		if(employeeBean.getId() != 0) {
 			employeeEntity.setId(employeeBean.getId());
-		}else {
+		}
 		employeeEntity.setEmployeeName(employeeBean.getEmployeeName());
 		employeeEntity.setEmployeeSalary(employeeBean.getEmployeeSalary());
 		employeeEntity.setEmployeeDesignation(employeeBean.getEmployeeDesignation());
 		
 		employeeService.saveEmployee(employeeEntity);
 		// will redirect to viewemp request mapping
-		}
+		
 		return new ModelAndView("success");
 	}
 	
