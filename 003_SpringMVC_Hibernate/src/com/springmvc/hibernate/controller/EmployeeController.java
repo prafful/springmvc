@@ -40,7 +40,7 @@ public class EmployeeController {
 	public ModelAndView save(@ModelAttribute("emp") EmployeeBean employeeBean) {
 		// write code to save emp object
 		// here, we are displaying emp object to prove emp has data
-		System.out.println(employeeBean.getEmployeeName() + " " + employeeBean.getEmployeeSalary() + " " + employeeBean.getEmployeeDesignation());
+		System.out.println("Adding/Updating: " + employeeBean.getId() + " " + employeeBean.getEmployeeName() + " " + employeeBean.getEmployeeSalary() + " " + employeeBean.getEmployeeDesignation());
 		// return new ModelAndView("empform","command",emp);//will display object data
 		/*
 		 *code to save the bean to the database 
@@ -48,15 +48,17 @@ public class EmployeeController {
 		 */
 		//transfer the data from bean to entity
 		EmployeeEntity employeeEntity = new EmployeeEntity();
+		if(employeeBean.getId() != 0) {
+			employeeEntity.setId(employeeBean.getId());
+		}else {
 		employeeEntity.setEmployeeName(employeeBean.getEmployeeName());
 		employeeEntity.setEmployeeSalary(employeeBean.getEmployeeSalary());
 		employeeEntity.setEmployeeDesignation(employeeBean.getEmployeeDesignation());
 		
 		employeeService.saveEmployee(employeeEntity);
-		
-		
-		
-		return new ModelAndView("success");// will redirect to viewemp request mapping
+		// will redirect to viewemp request mapping
+		}
+		return new ModelAndView("success");
 	}
 	
 	
@@ -80,6 +82,23 @@ public class EmployeeController {
 		System.out.println("I can delete the employee with id: " + id);
 		employeeService.deleteEmployee(id);
 		return "redirect:/viewEmployee.html";
+		
+	}
+	
+	@RequestMapping(value = "/updateEmployee", method=RequestMethod.GET)
+	public ModelAndView updateEmployee(@RequestParam("employeeId") Integer id, Model model) {
+		System.out.println("I can update the employee with id: " + id);
+		EmployeeEntity employeeEntity = employeeService.updateEmployee(id);
+		EmployeeBean employeeBean = new EmployeeBean();
+		employeeBean.setId(employeeEntity.getId());
+		employeeBean.setEmployeeName(employeeEntity.getEmployeeName());
+		employeeBean.setEmployeeSalary(employeeEntity.getEmployeeSalary());
+		employeeBean.setEmployeeDesignation(employeeEntity.getEmployeeDesignation());
+		System.out.println("Update the employee with name: " + employeeBean.getEmployeeName());
+
+		return new ModelAndView("employeeform", "command", employeeBean);
+		
+
 		
 	}
 }

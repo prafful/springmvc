@@ -22,7 +22,10 @@ public class EmployeeDAO {
 	public void saveEmployee(EmployeeEntity employeeEntity) {
 		// TODO Auto-generated method stub
 		
-		sessionFactory.openSession().saveOrUpdate(employeeEntity);		
+			sessionFactory.openSession().saveOrUpdate(employeeEntity);	
+		
+			
+		
 	}
 
 
@@ -46,7 +49,7 @@ public class EmployeeDAO {
 
 	public void deleteEmployee(Integer id) {
 		
-		System.out.println("in DAO: id:  " + id );
+		System.out.println("in DAO: for deleting:  " + id );
 		// TODO Auto-generated method stub
 		Session session = null;
 		
@@ -65,6 +68,27 @@ public class EmployeeDAO {
 		
 		session.flush();
 	
+	}
+
+
+	public EmployeeEntity updateEmployee(Integer id) {
+		// TODO Auto-generated method stub
+		System.out.println("in DAO: for update of :  " + id );
+		// TODO Auto-generated method stub
+		Session session = null;
+		try {
+		    session = sessionFactory.getCurrentSession();
+		} catch (HibernateException e) {
+		    session = sessionFactory.openSession();
+		}
+		EmployeeEntity employeeEntity  = (EmployeeEntity) session.get(EmployeeEntity.class, id);
+		if(employeeEntity!=null) {
+			return employeeEntity;
+		}else {
+			System.out.println("Employee with id " + id + " not able to update!!!");
+		}
+		return employeeEntity;
+		
 	}
 
 }

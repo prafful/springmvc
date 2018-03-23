@@ -34,4 +34,9 @@ public class EmployeeService {
 		employeedao.deleteEmployee(id);
 	}
 
+	public EmployeeEntity updateEmployee(Integer id) {
+		// TODO Auto-generated method stub
+		return employeedao.updateEmployee(id);
+	}
+
 }
