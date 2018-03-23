@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Success</title>
+<title>Deleted</title>
 </head>
 <body>
+
 <a href="employeeForm.html">Add Employee</a>
 	<a href="viewEmployee.html">View Employee</a>
 	
-
-	<h1>Employee is saved to the database</h1>
+	<h1>Employee is deleted.</h1>
 </body>
 </html>

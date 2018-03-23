@@ -1,10 +1,15 @@
 package com.springmvc.hibernate.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springmvc.hibernate.bean.EmployeeBean;
@@ -53,5 +58,28 @@ public class EmployeeController {
 		
 		return new ModelAndView("success");// will redirect to viewemp request mapping
 	}
+	
+	
+	@RequestMapping("/viewEmployee")
+	public String viewEmployees(Model model) {
+		List<EmployeeBean> list = employeeService.viewEmployees();
+		model.addAttribute("allEmployees", list);
+		return "getEmployee";
+		
+	}
+	
+	/*@RequestMapping(value = "/deleteEmployee/{empid}", method=RequestMethod.POST)
+	public void deleteEmployee(@PathVariable("empid") String id) {
+		System.out.println(id);;
+		
+	}*/
 
+	@RequestMapping(value = "/deleteEmployee", method=RequestMethod.GET)
+	public String deleteEmployee(@RequestParam("employeeId") Integer id, Model model) {
+	
+		System.out.println("I can delete the employee with id: " + id);
+		employeeService.deleteEmployee(id);
+		return "redirect:/viewEmployee.html";
+		
+	}
 }
